@@ -2,7 +2,7 @@ class Dice < ApplicationRecord
   belongs_to :roll_result
 
   def singlroll
-    @dice = @dice{:roll = 1}
+#    @dice = @dice{:roll = 1}
     @dice.save
   end
 
