@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  date: 
+  number_of_dices: 
+  limit_of_dice: 
+  rolls_list: MyString
+  rolls_sum: 
+  result_message: MyString
+
+two:
+  name: MyString
+  date: 
+  number_of_dices: 
+  limit_of_dice: 
+  rolls_list: MyString
+  rolls_sum: 
+  result_message: MyString

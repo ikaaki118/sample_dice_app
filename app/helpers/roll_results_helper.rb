@@ -1,0 +1,2 @@
+module RollResultsHelper
+end
