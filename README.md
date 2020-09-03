@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+[アプリ説明]
+サイコロを投げて、その結果を複数人で共有するアプリです。
