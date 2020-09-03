@@ -5,7 +5,7 @@ class RollResultsController < ApplicationController
   def create
     @roll_result = RollResult.new(params.require(:roll_result).permit(:name, :limit_of_dice, :number_of_dices))
   
-    @dice = Dice.diceroll
+    @dice = Dice.new.diceroll
     @dice.save
 
     @roll_result.save
