@@ -9,12 +9,12 @@
 
 
   <p>
-    <%= form.label :面数 %><br>
+    <%= form.label :'面数 1~1000' %><br>
     <%= form.text_field :limit_of_dice %>面
   </p>
 
   <p>
-    <%= form.label :個数 %><br>
+    <%= form.label :'個数 1~100' %><br>
     <%= form.text_field :number_of_dices %>個
   </p>
 
@@ -22,28 +22,34 @@
     <%= form.submit :サイコロを振る %>
   </p>
 
-  <table>
-  <tr>
-    <th>名前</th>
-    <th>面数</th>
-    <th>個数</th>
-  </tr>
+<% end %>
 
-  <% @roll_result.reverse_each do |roll_result| %>
+  <table>
     <tr>
-      <td><%= roll_result.name %></td>
-      <td><%= roll_result.limit_of_dice %></td>
-      <td><%= roll_result.number_of_dices%></td>
-    
-      <% roll_result.dices.each do |dice| %>
-        <td>
-          <%= dice.roll %>
+      <th>日時</th>
+      <th>名前</th>
+      <th>面数</th>
+      <th>個数</th>
+      <th>結果</th>
+      <th>合計</th>
+    </tr>
+
+    <% @roll_result.reverse_each do |roll_result| %>
+      <tr>
+        <td><%= roll_result.date %></td>
+        <td><%= roll_result.name %></td>
+        <td><%= roll_result.limit_of_dice %></td>
+        <td><%= roll_result.number_of_dices%></td>
+        <td><%= roll_result.rolls_list %></td>
+        <td><%= roll_result.rolls_sum%></td>
+
+        <td><%= link_to '削除', roll_result_path(roll_result),
+        method: :delete, data: { confirm: '削除します' } %>
         </td>
+        <td><%= link_to '詳細', roll_result_path(roll_result) %>
+        </td>
+      </tr>
+    
       <% end %>
 
-      <td><%= link_to '削除', roll_result_path(roll_result),
-      method: :delete, data: { confirm: '削除します' } %>
-    </tr>
-  <% end %>
-
-<% end %>
+  </table>

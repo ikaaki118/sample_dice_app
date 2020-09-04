@@ -1,17 +1,42 @@
-<p>
-  <strong>名前:</strong>
-  <%= @roll_result.name %>
-</p>
+<table border="1">
+
+  <tr>
+    <th>結果ID</th>
+    <th>日時</th>
+    <th>名前</th>
+    <th>面数</th>
+    <th>個数</th>
+    <th>結果</th>
+    <th>合計</th>
+  </tr>
+
+
+  <tr>
+    <td><%= @roll_result.id %></td>
+    <td><%= @roll_result.date %></td>
+    <td><%= @roll_result.name %></td>
+    <td><%= @roll_result.limit_of_dice %></td>
+    <td><%= @roll_result.number_of_dices%></td>
+    <td><%= @roll_result.rolls_list %></td>
+    <td><%= @roll_result.rolls_sum%></td>
+  </tr>
+</table>
 
 <p>
-  <strong>面数:</strong>
-  <%= @roll_result.limit_of_dice %>
-</p>
 
-<p>
-  <strong>個数:</strong>
-  <%= @roll_result.number_of_dices %>
-</p>
+<table border="1">
 
+    <tr>
+      <th>出目ID</th>
+      <th>出目</th>
+    </tr>
+
+  <% @roll_result.dices.each do |dice| %>
+    <tr>
+      <td><%= dice.id %></td>
+      <td><%= dice.roll %></td>
+    </tr>
+  <% end %>
 
 </table>
+

@@ -1,16 +1,13 @@
 class Dice < ApplicationRecord
   belongs_to :roll_result
 
-  def singlroll
-#    @dice = @dice{:roll = 1}
-    @dice.save
-  end
+  #乱数を1つ生成して、Diceオブジェクトのrollに入れる。引数は面数
+  def tumbling(limit)
 
-  def diceroll
     @dice = Dice.new
-  #  @roll_result = Rollresult.find(params[:roll_result_id])
-    @dice = @dice.singlroll
-  end
 
+    #ランダムに "1～面数" までの乱数を1つ代入する
+    @dice.roll = rand(limit) + 1
+  end
 
 end
