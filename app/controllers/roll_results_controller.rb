@@ -8,10 +8,8 @@ class RollResultsController < ApplicationController
     #create(POSTコマンド)で呼び出されたとき、Rollresultオブジェクトを1つ生成。フォームから名前、個数、上限を持ってくる
     @roll_result = RollResult.new(params.require(:roll_result).permit(:name, :limit_of_dice, :number_of_dices))
 
-    #datetimeに現在時刻を代入
-    #できればUTCでなく日本時刻を取得したい…
-    d = Time.now
-    @roll_result.date = d
+    #dateに現在時刻を文字列として入れる(タイムゾーン東京、"年-日-時 時:分:秒")
+    @roll_result.date = Time.current.in_time_zone('Tokyo').strftime("%F %T")
 
     if @roll_result.save
 

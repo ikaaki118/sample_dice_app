@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_043745) do
+ActiveRecord::Schema.define(version: 2020_09_08_044312) do
 
   create_table "dices", force: :cascade do |t|
     t.integer "roll"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_043745) do
 
   create_table "roll_results", force: :cascade do |t|
     t.string "name"
-    t.datetime "date"
+    t.string "date"
     t.integer "number_of_dices"
     t.integer "limit_of_dice"
     t.string "rolls_list"

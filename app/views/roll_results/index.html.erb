@@ -1,55 +1,46 @@
-<h1>Diceshare#index</h1>
-ダイスシェア予定地
+<font size="1"><%= @roll_result.first.created_at.strftime("%F") %>からこれまでに
+<%= @roll_result.last.id %>人が合計<%= @roll_result.last.dices.last.id %>個のダイスを投げていきました。
+</font>
+
+<h1>Diceshare</h1>
 
 <%= form_with scope: :roll_result, url: roll_results_path , local: true do |form| %>
-  <p>
-    <%= form.label :名前 %><br>
-    <%= form.text_field :name %>
-  </p>
-
-
-  <p>
-    <%= form.label :'面数 1~1000' %><br>
-    <%= form.text_field :limit_of_dice %>面
-  </p>
-
-  <p>
-    <%= form.label :'個数 1~100' %><br>
-    <%= form.text_field :number_of_dices %>個
-  </p>
-
-  <p>
-    <%= form.submit :サイコロを振る %>
-  </p>
-
-<% end %>
-
   <table>
     <tr>
-      <th>日時</th>
-      <th>名前</th>
-      <th>面数</th>
-      <th>個数</th>
-      <th>結果</th>
-      <th>合計</th>
+      <%= form.label :名前 %>
+      <%= form.text_field :name , value:"" %>
+      <p>
     </tr>
-
-    <% @roll_result.reverse_each do |roll_result| %>
-      <tr>
-        <td><%= roll_result.date %></td>
-        <td><%= roll_result.name %></td>
-        <td><%= roll_result.limit_of_dice %></td>
-        <td><%= roll_result.number_of_dices%></td>
-        <td><%= roll_result.rolls_list %></td>
-        <td><%= roll_result.rolls_sum%></td>
-
-        <td><%= link_to '削除', roll_result_path(roll_result),
-        method: :delete, data: { confirm: '削除します' } %>
-        </td>
-        <td><%= link_to '詳細', roll_result_path(roll_result) %>
-        </td>
-      </tr>
-    
-      <% end %>
-
+    <td>
+      <%= form.text_field :limit_of_dice , size: "1" %>面ダイスを
+      <%= form.text_field :number_of_dices , size: "1" %>個投げる
+    </td>
+    <td>
+      <%= form.submit :ダイスを投げる %>
+    </td>
   </table>
+
+<% end %>
+<P>
+  <font size="2">
+  ※ダイスの種類は1面～1000面までの整数を指定できます
+  <br>
+  ※ダイスの個数は1～100個まで指定できます
+  </font>
+</p>
+
+<hr size="1" noshade>
+<p>
+  結果一覧(過去30件まで表示されます)
+</p>
+<% @roll_result.last(30).reverse_each do |result| %>
+
+  <p>
+    <%= result.date %>
+    <br>
+    　<%= result.name %>さんが<%= result.limit_of_dice %>面ダイスを<%= result.number_of_dices %>個投げました。
+    <br>
+    　結果は<font color="red"><%= result.rolls_list %></font>でした。(合計<%= result.rolls_sum %>)
+  </p>
+<% end %>
+
